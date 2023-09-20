@@ -18,20 +18,50 @@ const btn = document.querySelector(".btn");
 //   picketList.append(picketLI);
 // }
 // console.log(Math.ceil(pickets));
-function breakDown() {
-  const test = input.value;
-  console.log(test.indexOf("'"));
-  if (test.indexOf("'") !== -1) {
-    console.log("do this");
-    const foot = test.slice(0, test.indexOf("'"));
-    console.log(test);
-  } else {
-    console.log("did this instead");
+function calculatePickets(dimension) {
+  console.log(dimension);
+  let pickets = Math.ceil((dimension - 1.5) / 5.5);
+  renderPickets((dimension - 1.5) / pickets, pickets);
+  // console.log(picketSpacing);
+}
+function renderPickets(spacing, picket) {
+  let nextPicket = spacing;
+  for (let i = 0; i < picket; i++) {
+    let picketLI = document.createElement("li");
+    picketLI.textContent = nextPicket.toFixed(3);
+    nextPicket += spacing;
+    console.log(picketLI.textContent);
+    picketList.append(picketLI);
   }
+}
+
+function evaluateInput() {
+  const picketDimension = input.value;
+  if (isNaN(picketDimension)) {
+    console.log("is not a number");
+    //Go to this place
+    //some class to do the work
+  } else {
+    console.log("is a number");
+    calculatePickets(+picketDimension);
+    //Go here and do the math
+    //maybe another class to do the job
+  }
+  // regex = /\d;
+  // console.log(picketDimension.match(/\D/));
+  // picketDimension.match("/D");
+  // // console.log(test.indexOf("'"));
+  // if (picketDimension.indexOf("'") !== -1) {
+  //   // console.log("do this");
+  //   const foot = picketDimension.slice(0, picketDimension.indexOf("'"));
+  //   console.log(picketDimension);
+  // } else {
+  //   console.log("did this instead");
+  // }
   // let pickets = Math.ceil((+input.value - 1.5) / 5.5);
 }
 
-btn.addEventListener("click", breakDown);
+btn.addEventListener("click", evaluateInput);
 
 //===============Future Idea for drawing========================
 // function draw() {
