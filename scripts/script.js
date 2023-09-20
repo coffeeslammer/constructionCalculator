@@ -39,13 +39,58 @@ function evaluateInput() {
   const picketDimension = input.value;
   if (isNaN(picketDimension)) {
     console.log("is not a number");
+    const railLength = breakingInputDown(picketDimension);
+    if (isNaN(railLength)) {
+      //Unhide invalid in HTML
+    } else {
+      calculatePickets(railLength);
+    }
     //Go to this place
     //some class to do the work
   } else {
-    console.log("is a number");
+    //Checks to make sure there isn't a list already rendered
+    //If there is then this clears it
+    if (picketList.innerHTML !== "") {
+      picketList.innerHTML = "";
+    }
     calculatePickets(+picketDimension);
     //Go here and do the math
     //maybe another class to do the job
+  }
+
+  function breakingInputDown(dismantling) {
+    let foot = 0;
+    let inch = 0;
+    let numerator = 0;
+    let denominator = 1;
+    let footMark = 0;
+    let inchMark = 0;
+    let divMark = 0;
+    let length = 0;
+
+    if (dismantling.indexOf("'") !== -1) {
+      footMark = dismantling.indexOf("'");
+      foot = +dismantling.slice(0, footMark);
+      length = foot * 12;
+    }
+    if (dismantling.indexOf('"') !== -1) {
+      inchMark = dismantling.indexOf('"');
+      inch = +dismantling.slice(footMark + 1, inchMark);
+      length += inch;
+    }
+    if (dismantling.indexOf("/") !== -1) {
+      divMark = dismantling.indexOf("/");
+      numerator = +dismantling.slice(inchMark + 1, divMark);
+      denominator = +dismantling.slice(divMark + 1);
+      if (denominator > 0) {
+        length += numerator / denominator;
+      }
+    }
+    console.log(
+      `foot is ${foot} inch ${inch} num ${numerator} and den is ${denominator}`
+    );
+    console.log(length);
+    return length;
   }
   // regex = /\d;
   // console.log(picketDimension.match(/\D/));
