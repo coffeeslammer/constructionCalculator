@@ -41,3 +41,20 @@ li {
 .hidden {
     visibility: hidden;
 }
+
+.no-show {
+    display: none;
+}
+
+/* .rating-field input[type="radio"] {
+    display: none;
+} */
+
+/* 
+details {
+    display: grid;
+} */
+
+.rating-field {
+    display: grid;
+}
