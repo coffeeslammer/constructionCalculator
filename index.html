@@ -10,13 +10,45 @@
 </head>
 
 <body>
-    <label for="input">Enter length of handrail
+    <!-- this div is under testing from a different html file. Names will change after testing -->
+    <div>
+        <details>
+            <summary>Choose</summary>
+            <form class="form-rate ">
+                <fieldset class="rating-field">
+                    <input type="radio" id="stairs" name="rating" value="stairs">
+                    <label for="stairs">Stairs</label>
+                    <input type="radio" id="roof" name="rating" value="roof">
+                    <label for="roof">Roof</label>
+                    <input type="radio" id="handRail" name="rating" value="handRail">
+                    <label for="handRail">Hand Rail</label>
+                    <input type="radio" id="rating4" name="rating" value="4">
+                    <label for="rating4">4</label>
+                    <input type="radio" id="rating5" name="rating" value="5">
+                    <label for="rating5">5</label>
+                </fieldset>
+                <button type="submit" name="rating" class="btn-submit">Submit</button>
+            </form>
+        </details>
+    </div>
 
-        <input type="text">
-        <button class="btn">Press Me</button>
-        <p class="invalid hidden">Invalid Input</p>
-    </label>
-    <ol class="pickets-list"></ol>
+    <main>
+        <section class="stairs-section no-show">
+            <h2>You are in the stair section</h2>
+            <p class="stair-answer"></p>
+            <ol class="step-hypot"></ol>
+        </section>
+        <section class="roof-section no-show"></section>
+        <section class="handrail-section no-show">
+            <label for="input">Enter length of handrail
+                <input id="dimension-input" type="text">
+                <button class="btn">Enter</button>
+                <p class="invalid hidden">Invalid Input</p>
+            </label>
+        </section>
+
+        <ol class="pickets-list"></ol>
+    </main>
     <script src="scripts/script.js"></script>
 </body>
 
