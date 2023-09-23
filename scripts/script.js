@@ -172,4 +172,4 @@ class Handrail {
   }
 }
 btn.addEventListener("click", inputBreakdown);
-decidedCalculation.addEventListener("submit", submittedCalculationChoice);
+decidedCalculation.addEventListener("submit", submittedCalculationChoice), true;
