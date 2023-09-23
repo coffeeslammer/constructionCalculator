@@ -14,25 +14,26 @@
     <section class="details-section">
         <details>
             <summary>Choose</summary>
-            <form class="form-rate ">
+            <form class="chooseCalculation">
                 <fieldset class="rating-field">
-                    <input type="radio" id="stairs" name="rating" value="stairs">
+                    <input type="radio" id="stairs" name="calculationChoice" value="stairs">
                     <label for="stairs">Stairs</label>
-                    <input type="radio" id="roof" name="rating" value="roof">
+                    <input type="radio" id="roof" name="calculationChoice" value="roof">
                     <label for="roof">Roof</label>
-                    <input type="radio" id="handRail" name="rating" value="handRail">
-                    <label for="handRail">Hand Rail</label>
+                    <input type="radio" id="handrails" name="calculationChoice" value="handrails">
+                    <label for="handrails">Hand Rail</label>
                 </fieldset>
-                <button type="submit" name="rating" class="btn-submit">Submit</button>
+                <button type="submit" name="calculationChoice" class="btn-submit">Submit</button>
             </form>
         </details>
     </section>
     <main>
         <section class="input-section">
-            <label id="base-input-label" for="input">
+            <label for="input">
                 <input id="dimension-input" type="text">
                 <button class="btn">Enter</button>
                 <p class="invalid hidden">Invalid Input</p>
+                <h2 id="base-input-label"></h2>
             </label>
         </section>
         <section class="display-ouput-section">
