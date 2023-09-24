@@ -38,7 +38,26 @@
         </section>
         <section class="display-ouput-section">
             <section class="stairs-section no-show">
-                <h2>You are in the stair section</h2>
+                <h2>Welcome to the stair section</h2>
+                <form>
+                    <fieldset>
+                        <legend>Enter Overall Height</legend>
+                        <input type="text" id="stair-height-input" name="stair-input" placeholder="height">
+                    </fieldset>
+                    <fieldset>
+                        <legend>Options</legend>
+                        <input type="checkbox" id="chbx-run" name="stair-input">
+                        <label for="chbx-run">If run is not 10.5</label>
+                        <input type="text" id="stair-run-input" name="stair-input" placeholder="10.5"><br>
+                        <input type="checkbox" id="chbx-landing" name="stair-input">
+                        <label for="chbx-landing">If landing how many steps to it</label>
+                        <input type="text" id="stair-landing-input" name="stair-input"><br>
+                        <input type="checkbox" id="chbx-opening" name="stair-input">
+                        <label for="chbx-opening">If headroom is an issue</label>
+                        <input type="text" id="stair-opening-input" name="stair-input">
+                    </fieldset>
+                    <button type="submit" name="stair-input" class="btn-start-submit">Calculate</button>
+                </form>
                 <p class="stair-answer"></p>
                 <ol class="step-hypot"></ol>
             </section>
@@ -46,8 +65,9 @@
             <section class="handrail-section no-show">
                 <h2>You are in the handrail section</h2>
                 <p class="picket-spacing-answer"></p>
+                <ol class="pickets-list"></ol>
             </section>
-            <ol class="pickets-list"></ol>
+            <!-- <button class="btn">Enter</button> -->
         </section>
     </main>
     <script src="scripts/script.js"></script>
