@@ -80,9 +80,7 @@ function breakingInputDown(dismantling) {
       length += numerator / denominator;
     }
   }
-  console.log(
-    `foot is ${foot} inch ${inch} num ${numerator} and den is ${denominator}`
-  ); //TODO debugging
+  console.log(`foot is ${foot} inch ${inch} num ${numerator} and den is ${denominator}`); //TODO debugging
   console.log(length);
   return length;
 }
@@ -115,20 +113,31 @@ class Stairs {
   steps = 0;
   rise = 0;
   stepHypot = 0;
+  headroom = 93;
+  floor = 10;
+  treads = 11.5;
+  treadThickness = 1;
+  opening = 0;
+  angle = 0;
 
   stairMath() {
-    let stairAngle = 0;
-
     this.steps = Math.ceil(this.height / 7.75);
     this.rise = this.height / this.steps;
     this.stepHypot = Math.sqrt(this.run ** 2 + this.rise ** 2);
+    this.angle = +((Math.atan2(this.rise, this.run) * 180) / Math.PI).toFixed(3);
+    this.opening = this.headroom / Math.tan(Math.atan2(this.rise, this.run));
 
     console.log(this.stepHypot); //TODO testing
     console.log(this.rise);
+    console.log(this.angle);
     this.renderStairHypot();
   }
   renderStairHypot() {
-    document.querySelector(".stair-answer").textContent = this.rise;
+    document.querySelector(".stair-answer").textContent = `Your rise is ${this.rise.toFixed(
+      3
+    )}, angle ${this.angle.toFixed(3)}, step hypot ${this.stepHypot.toFixed(
+      3
+    )} and min opening is ${this.opening} with stair length of ${this.run * this.steps}`;
 
     let nextHypot = this.stepHypot;
 
@@ -152,9 +161,7 @@ class Handrail {
   pickets = 0;
   picketSpacing = 0;
   calculatePickets() {
-    this.pickets = Math.ceil(
-      (this.length - this.picketThickness) / this.picketMaxSpace
-    );
+    this.pickets = Math.ceil((this.length - this.picketThickness) / this.picketMaxSpace);
     this.picketSpacing = (this.length - this.picketThickness) / this.pickets;
     this.renderPickets();
   }
@@ -172,4 +179,4 @@ class Handrail {
   }
 }
 btn.addEventListener("click", inputBreakdown);
-decidedCalculation.addEventListener("submit", submittedCalculationChoice), true;
+decidedCalculation.addEventListener("submit", submittedCalculationChoice);
