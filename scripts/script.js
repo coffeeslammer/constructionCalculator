@@ -1,45 +1,67 @@
 "use strict";
 
-const lengthInput = document.querySelector("#dimension-input");
-// const picketList = document.querySelector(".pickets-list");
+const lengthInput = document.querySelector(".dimension-input");
 const btn = document.querySelector(".btn");
-const decidedCalculation = document.querySelector(".chooseCalculation");
-// const handRails = document.querySelector(".handrail-section");
-// const stairSection = document.querySelector(".stairs-section");
-const inputLabel = document.querySelector("#base-input-label"); //FIXME this needs a different name, not using label
-
-let tempChoice; //FIXME this is a temp global to determine what choice was made
-//for now I need it global until I refactor
+const stairInput = document.getElementById("stair-height-input");
+const selection = document.getElementById("calculation-select");
 
 //FIXME give preCheck a better name, doesn't make much sense.
 function preCheck(choice) {
   if (choice.innerHTML !== "") {
     choice.innerHTML = "";
   }
-  if (!document.querySelector(".invalid").classList.contains("hidden")) {
-    document.querySelector(".invalid").classList.add("hidden");
+  // if (!document.querySelector(".invalid").classList.contains("hidden")) {
+  //   document.querySelector(".invalid").classList.add("hidden");
+  // }
+}
+function invalidInput() {}
+//==================================testing=======================================
+// var value = e.value;
+// const text = selection.options[selection.selectedIndex].text;
+// console.log(text);
+
+function testingSelect() {
+  // console.log(e.target.value);
+  if ("stairs" === selection.value) {
+    console.log("you selected stairs");
+    showStairs();
+  }
+  if ("handrails" === selection.value) {
+    console.log("you selected handrails");
+    showHandrail();
+  }
+  if ("roof" === selection.value) {
+    console.log("you selected roof");
   }
 }
-
+//====================================end test===================================
 function compareChoice(dimensions) {
-  console.log(tempChoice); //TODO debugging
-  if (tempChoice === "stairs") {
+  console.log(selection.value); //TODO debugging
+  if (selection.value === "stairs") {
     const stair = new Stairs(dimensions);
     preCheck(stair.stairOl);
     // inputLabel.textContent = "Enter overall height";
     stair.stairMath();
-  } else if (tempChoice === "handrails") {
+  } else if (selection.value === "handrails") {
     const handrail = new Handrail(dimensions);
     preCheck(handrail.picketList);
 
     // inputLabel.textContent = "Enter length of handrail";
     handrail.calculatePickets();
-  } else if (tempChoice === "roof") {
+  } else if (selection.value === "roof") {
     //do this
   }
 }
-function inputBreakdown() {
-  const checkDimension = lengthInput.value;
+//FIXME this is where I need to test what choice was made
+//it is already known by the time user gets here
+function handelInput() {
+  const checkDimension = lengthInput.value; //can this just be generic input?
+
+  if (checkDimension === "") {
+    lengthInput.classList.add("invalid-input");
+  } else {
+    lengthInput.classList.remove("invalid-input"); //TODO seems there should be a better way to handle this
+  }
   if (isNaN(checkDimension)) {
     const usableDimension = breakingInputDown(checkDimension);
     if (isNaN(usableDimension)) {
@@ -51,7 +73,18 @@ function inputBreakdown() {
     compareChoice(+checkDimension);
   }
 }
-
+function showStairs() {
+  document.querySelector(".test").textContent = "Enter overall height"; //The h1
+  document.querySelector(".handrail-section").classList.add("no-show");
+  document.querySelector(".stairs-section").classList.remove("no-show");
+  btn.classList.remove("no-show");
+  // document.querySelector("details").removeAttribute("open");
+}
+function showHandrail() {
+  document.querySelector(".test").textContent = "Enter length of handrail";
+  document.querySelector(".stairs-section").classList.add("no-show");
+  document.querySelector(".handrail-section").classList.remove("no-show");
+}
 function breakingInputDown(dismantling) {
   let foot = 0;
   let inch = 0;
@@ -85,24 +118,6 @@ function breakingInputDown(dismantling) {
   return length;
 }
 
-function submittedCalculationChoice(e) {
-  e.preventDefault();
-  tempChoice = new FormData(e.target).get("calculationChoice");
-  console.log(tempChoice);
-  if (tempChoice === "handrails") {
-    //TODO I may need a generic function here. This could get pretty big
-    //the more calculation options I add in
-    inputLabel.textContent = "Enter length of handrail";
-    document.querySelector(".stairs-section").classList.add("no-show");
-    document.querySelector(".handrail-section").classList.remove("no-show");
-    document.querySelector("details").removeAttribute("open");
-  } else if (tempChoice === "stairs") {
-    inputLabel.textContent = "Enter overall height";
-    document.querySelector(".handrail-section").classList.add("no-show");
-    document.querySelector(".stairs-section").classList.remove("no-show");
-    document.querySelector("details").removeAttribute("open");
-  }
-}
 class Stairs {
   constructor(dimensionInput, run = 10.5) {
     this.height = dimensionInput;
@@ -178,5 +193,6 @@ class Handrail {
     }
   }
 }
-btn.addEventListener("click", inputBreakdown);
-decidedCalculation.addEventListener("submit", submittedCalculationChoice);
+btn.addEventListener("click", handelInput); //TODO I think I need to pass the choice here so it will know
+// decidedCalculation.addEventListener("submit", submittedCalculationChoice);
+selection.addEventListener("click", testingSelect);
