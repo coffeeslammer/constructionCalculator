@@ -12,7 +12,7 @@
 <body>
     <nav>
         <label for="calculation-select">Choose Your Calculation:</label>
-        <select name="pets" id="calculation-select">
+        <select name="choices" id="calculation-select">
             <option value="">--Please choose an option--</option>
             <option value="stairs">Stairs</option>
             <option value="roof">Roof</option>
@@ -22,14 +22,15 @@
     <main>
         <h1 class="test">Welcome to my <br> Construction Calculator Project <br>Please select an option from above</h1>
         <section class="display-ouput-section ">
+            <fieldset>
+                <legend>Enter Overall Height</legend>
+                <input class="dimension-input" type="text" id="stair-height-input" name="stair-input"
+                    placeholder="height">
+            </fieldset>
             <section class="stairs-section no-show">
                 <h2>You are in the stair section</h2>
                 <form>
-                    <fieldset>
-                        <legend>Enter Overall Height</legend>
-                        <input class="dimension-input" type="text" id="stair-height-input" name="stair-input"
-                            placeholder="height">
-                    </fieldset>
+
                     <fieldset>
                         <legend>Options</legend>
                         <input type="checkbox" id="chbx-run" name="stair-input">
@@ -52,7 +53,8 @@
                 <p class="picket-spacing-answer"></p>
                 <ol class="pickets-list"></ol>
             </section>
-            <button class="btn no-show">Enter</button>
+            <button class="calculate-btn">Enter</button>
+            <!-- I need a better place to put this -->
         </section>
     </main>
     <script src="scripts/script.js"></script>

@@ -1,61 +1,31 @@
 "use strict";
 
 const lengthInput = document.querySelector(".dimension-input");
-const btn = document.querySelector(".btn");
-const stairInput = document.getElementById("stair-height-input");
+const btn = document.querySelector(".calculate-btn");
 const selection = document.getElementById("calculation-select");
 
-//FIXME give preCheck a better name, doesn't make much sense.
-function preCheck(choice) {
+function preRenderCheck(choice) {
+  //this is a check to see if a <li> list was printed and if so clears it
   if (choice.innerHTML !== "") {
     choice.innerHTML = "";
   }
-  // if (!document.querySelector(".invalid").classList.contains("hidden")) {
-  //   document.querySelector(".invalid").classList.add("hidden");
-  // }
 }
-function invalidInput() {}
-//==================================testing=======================================
-// var value = e.value;
-// const text = selection.options[selection.selectedIndex].text;
-// console.log(text);
 
-function testingSelect() {
-  // console.log(e.target.value);
+function choiceSelected() {
   if ("stairs" === selection.value) {
-    console.log("you selected stairs");
+    console.log("you selected stairs"); //TODO debugging remove when done
     showStairs();
   }
   if ("handrails" === selection.value) {
-    console.log("you selected handrails");
+    console.log("you selected handrails"); //TODO debugging remove when done
     showHandrail();
   }
   if ("roof" === selection.value) {
-    console.log("you selected roof");
+    console.log("you selected roof"); //TODO debugging remove when done
   }
 }
-//====================================end test===================================
-function compareChoice(dimensions) {
-  console.log(selection.value); //TODO debugging
-  if (selection.value === "stairs") {
-    const stair = new Stairs(dimensions);
-    preCheck(stair.stairOl);
-    // inputLabel.textContent = "Enter overall height";
-    stair.stairMath();
-  } else if (selection.value === "handrails") {
-    const handrail = new Handrail(dimensions);
-    preCheck(handrail.picketList);
-
-    // inputLabel.textContent = "Enter length of handrail";
-    handrail.calculatePickets();
-  } else if (selection.value === "roof") {
-    //do this
-  }
-}
-//FIXME this is where I need to test what choice was made
-//it is already known by the time user gets here
 function handelInput() {
-  const checkDimension = lengthInput.value; //can this just be generic input?
+  const checkDimension = lengthInput.value;
 
   if (checkDimension === "") {
     lengthInput.classList.add("invalid-input");
@@ -73,15 +43,31 @@ function handelInput() {
     compareChoice(+checkDimension);
   }
 }
+
+function compareChoice(dimensions) {
+  if (selection.value === "stairs") {
+    const stair = new Stairs(dimensions);
+    preRenderCheck(stair.stairOl);
+
+    stair.stairMath();
+  } else if (selection.value === "handrails") {
+    const handrail = new Handrail(dimensions);
+    preRenderCheck(handrail.picketList);
+
+    handrail.calculatePickets();
+  } else if (selection.value === "roof") {
+    //do this
+  }
+}
+//TODO these classList may need to get there own generic function because after
+//creating so many choices this could get really messy
 function showStairs() {
-  document.querySelector(".test").textContent = "Enter overall height"; //The h1
+  document.querySelector("h1").textContent = "Enter overall height"; //The h1 under testing
   document.querySelector(".handrail-section").classList.add("no-show");
   document.querySelector(".stairs-section").classList.remove("no-show");
-  btn.classList.remove("no-show");
-  // document.querySelector("details").removeAttribute("open");
 }
 function showHandrail() {
-  document.querySelector(".test").textContent = "Enter length of handrail";
+  document.querySelector("h1").textContent = "Enter length of handrail";
   document.querySelector(".stairs-section").classList.add("no-show");
   document.querySelector(".handrail-section").classList.remove("no-show");
 }
@@ -193,6 +179,6 @@ class Handrail {
     }
   }
 }
-btn.addEventListener("click", handelInput); //TODO I think I need to pass the choice here so it will know
-// decidedCalculation.addEventListener("submit", submittedCalculationChoice);
-selection.addEventListener("click", testingSelect);
+btn.addEventListener("click", handelInput);
+
+selection.addEventListener("click", choiceSelected);
