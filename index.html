@@ -10,39 +10,25 @@
 </head>
 
 <body>
-    <!-- this div is under testing from a different html file. Names will change after testing -->
-    <section class="details-section">
-        <details>
-            <summary>Choose</summary>
-            <form class="chooseCalculation">
-                <fieldset class="rating-field">
-                    <input type="radio" id="stairs" name="calculationChoice" value="stairs">
-                    <label for="stairs">Stairs</label>
-                    <input type="radio" id="roof" name="calculationChoice" value="roof">
-                    <label for="roof">Roof</label>
-                    <input type="radio" id="handrails" name="calculationChoice" value="handrails">
-                    <label for="handrails">Hand Rail</label>
-                </fieldset>
-                <button type="submit" name="calculationChoice" class="btn-submit">Submit</button>
-            </form>
-        </details>
-    </section>
+    <nav>
+        <label for="calculation-select">Choose Your Calculation:</label>
+        <select name="pets" id="calculation-select">
+            <option value="">--Please choose an option--</option>
+            <option value="stairs">Stairs</option>
+            <option value="roof">Roof</option>
+            <option value="handrails">Handrails</option>
+        </select>
+    </nav>
     <main>
-        <section class="input-section">
-            <label for="input">
-                <input id="dimension-input" type="text">
-                <button class="btn">Enter</button>
-                <p class="invalid hidden">Invalid Input</p>
-                <h2 id="base-input-label"></h2>
-            </label>
-        </section>
-        <section class="display-ouput-section">
+        <h1 class="test">Welcome to my <br> Construction Calculator Project <br>Please select an option from above</h1>
+        <section class="display-ouput-section ">
             <section class="stairs-section no-show">
-                <h2>Welcome to the stair section</h2>
+                <h2>You are in the stair section</h2>
                 <form>
                     <fieldset>
                         <legend>Enter Overall Height</legend>
-                        <input type="text" id="stair-height-input" name="stair-input" placeholder="height">
+                        <input class="dimension-input" type="text" id="stair-height-input" name="stair-input"
+                            placeholder="height">
                     </fieldset>
                     <fieldset>
                         <legend>Options</legend>
@@ -56,7 +42,6 @@
                         <label for="chbx-opening">If headroom is an issue</label>
                         <input type="text" id="stair-opening-input" name="stair-input">
                     </fieldset>
-                    <button type="submit" name="stair-input" class="btn-start-submit">Calculate</button>
                 </form>
                 <p class="stair-answer"></p>
                 <ol class="step-hypot"></ol>
@@ -67,7 +52,7 @@
                 <p class="picket-spacing-answer"></p>
                 <ol class="pickets-list"></ol>
             </section>
-            <!-- <button class="btn">Enter</button> -->
+            <button class="btn no-show">Enter</button>
         </section>
     </main>
     <script src="scripts/script.js"></script>
