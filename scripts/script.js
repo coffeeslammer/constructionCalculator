@@ -24,43 +24,44 @@ function choiceSelected() {
     console.log("you selected roof"); //TODO debugging remove when done
   }
 }
-function handelInput() {
-  const checkDimension = lengthInput.value;
+// function handelInput() {
+//   const checkDimension = lengthInput.value;
 
-  if (checkDimension === "") {
-    lengthInput.classList.add("invalid-input");
-  } else {
-    lengthInput.classList.remove("invalid-input"); //TODO seems there should be a better way to handle this
-  }
-  if (isNaN(checkDimension)) {
-    const usableDimension = breakingInputDown(checkDimension);
-    if (isNaN(usableDimension)) {
-      document.querySelector(".invalid").classList.remove("hidden");
-    } else {
-      compareChoice(+usableDimension);
-    }
-  } else {
-    compareChoice(+checkDimension);
-  }
-}
+//   if (checkDimension === "") {
+//     lengthInput.classList.add("invalid-input");
+//   } else {
+//     lengthInput.classList.remove("invalid-input"); //TODO seems there should be a better way to handle this
+//   }
+//   if (isNaN(checkDimension)) {
+//     const usableDimension = breakingInputDown(checkDimension);
+//     if (isNaN(usableDimension)) {
+//       document.querySelector(".invalid").classList.remove("hidden");
+//     } else {
+//       compareInputChoice(+usableDimension);
+//     }
+//   } else {
+//     compareInputChoice(+checkDimension);
+//   }
+// }
 
-function compareChoice(dimensions) {
-  if (selection.value === "stairs") {
-    const stair = new Stairs(dimensions);
-    preRenderCheck(stair.stairOl);
+// function compareInputChoice(dimensions) {
+//   if (selection.value === "stairs") {
+//     const stair = new Stairs(dimensions);
+//     preRenderCheck(stair.stairOl);
 
-    stair.stairMath();
-  } else if (selection.value === "handrails") {
-    const handrail = new Handrail(dimensions);
-    preRenderCheck(handrail.picketList);
+//     stair.stairMath();
+//   } else if (selection.value === "handrails") {
+//     const handrail = new Handrail(dimensions);
+//     preRenderCheck(handrail.picketList);
 
-    handrail.calculatePickets();
-  } else if (selection.value === "roof") {
-    //do this
-  }
-}
+//     handrail.calculatePickets();
+//   } else if (selection.value === "roof") {
+//     //do this
+//   }
+// }
 //TODO these classList may need to get there own generic function because after
 //creating so many choices this could get really messy
+//thinking maybe a render class and a input handel class so these would be a render class
 function showStairs() {
   document.querySelector("h1").textContent = "Enter overall height"; //The h1 under testing
   document.querySelector(".handrail-section").classList.add("no-show");
@@ -71,39 +72,109 @@ function showHandrail() {
   document.querySelector(".stairs-section").classList.add("no-show");
   document.querySelector(".handrail-section").classList.remove("no-show");
 }
-function breakingInputDown(dismantling) {
-  let foot = 0;
-  let inch = 0;
-  let numerator = 0;
-  let denominator = 1;
-  let footMark = 0;
-  let inchMark = 0;
-  let divMark = 0;
-  let length = 0;
+// function breakingInputDown(dismantling) {
+//   let foot = 0;
+//   let inch = 0;
+//   let numerator = 0;
+//   let denominator = 1;
+//   let footMark = 0;
+//   let inchMark = 0;
+//   let divMark = 0;
+//   let length = 0;
 
-  if (dismantling.indexOf("'") !== -1) {
-    footMark = dismantling.indexOf("'");
-    foot = +dismantling.slice(0, footMark);
-    length = foot * 12;
+//   if (dismantling.indexOf("'") !== -1) {
+//     footMark = dismantling.indexOf("'");
+//     foot = +dismantling.slice(0, footMark);
+//     length = foot * 12;
+//   }
+//   if (dismantling.indexOf('"') !== -1) {
+//     inchMark = dismantling.indexOf('"');
+//     inch = +dismantling.slice(footMark + 1, inchMark);
+//     length += inch;
+//   }
+//   if (dismantling.indexOf("/") !== -1) {
+//     divMark = dismantling.indexOf("/");
+//     numerator = +dismantling.slice(inchMark + 1, divMark);
+//     denominator = +dismantling.slice(divMark + 1);
+//     if (denominator > 0) {
+//       length += numerator / denominator;
+//     }
+//   }
+//   console.log(`foot is ${foot} inch ${inch} num ${numerator} and den is ${denominator}`); //TODO debugging
+//   console.log(length);
+//   return length;
+// }
+class Input {
+  constructor() {
+    this.handelInput = this.handelInput.bind(this);
   }
-  if (dismantling.indexOf('"') !== -1) {
-    inchMark = dismantling.indexOf('"');
-    inch = +dismantling.slice(footMark + 1, inchMark);
-    length += inch;
-  }
-  if (dismantling.indexOf("/") !== -1) {
-    divMark = dismantling.indexOf("/");
-    numerator = +dismantling.slice(inchMark + 1, divMark);
-    denominator = +dismantling.slice(divMark + 1);
-    if (denominator > 0) {
-      length += numerator / denominator;
+  handelInput() {
+    const checkDimension = lengthInput.value;
+
+    if (checkDimension === "") {
+      lengthInput.classList.add("invalid-input");
+    } else {
+      lengthInput.classList.remove("invalid-input"); //TODO seems there should be a better way to handle this
+    }
+    if (isNaN(checkDimension)) {
+      const usableDimension = this.breakingInputDown(checkDimension);
+      if (isNaN(usableDimension)) {
+        document.querySelector(".invalid").classList.remove("hidden");
+      } else {
+        this.compareInputChoice(+usableDimension);
+      }
+    } else {
+      this.compareInputChoice(+checkDimension);
     }
   }
-  console.log(`foot is ${foot} inch ${inch} num ${numerator} and den is ${denominator}`); //TODO debugging
-  console.log(length);
-  return length;
-}
+  compareInputChoice(dimensions) {
+    if (selection.value === "stairs") {
+      const stair = new Stairs(dimensions);
+      preRenderCheck(stair.stairOl);
 
+      stair.stairMath();
+    } else if (selection.value === "handrails") {
+      const handrail = new Handrail(dimensions);
+      preRenderCheck(handrail.picketList);
+      console.log("I made it inside a class");
+      handrail.calculatePickets();
+    } else if (selection.value === "roof") {
+      //do this
+    }
+  }
+  breakingInputDown(dismantling) {
+    let foot = 0;
+    let inch = 0;
+    let numerator = 0;
+    let denominator = 1;
+    let footMark = 0;
+    let inchMark = 0;
+    let divMark = 0;
+    let length = 0;
+
+    if (dismantling.indexOf("'") !== -1) {
+      footMark = dismantling.indexOf("'");
+      foot = +dismantling.slice(0, footMark);
+      length = foot * 12;
+    }
+    if (dismantling.indexOf('"') !== -1) {
+      inchMark = dismantling.indexOf('"');
+      inch = +dismantling.slice(footMark + 1, inchMark);
+      length += inch;
+    }
+    if (dismantling.indexOf("/") !== -1) {
+      divMark = dismantling.indexOf("/");
+      numerator = +dismantling.slice(inchMark + 1, divMark);
+      denominator = +dismantling.slice(divMark + 1);
+      if (denominator > 0) {
+        length += numerator / denominator;
+      }
+    }
+    console.log(`foot is ${foot} inch ${inch} num ${numerator} and den is ${denominator}`); //TODO debugging
+    console.log(length);
+    return length;
+  }
+}
 class Stairs {
   constructor(dimensionInput, run = 10.5) {
     this.height = dimensionInput;
@@ -179,6 +250,7 @@ class Handrail {
     }
   }
 }
-btn.addEventListener("click", handelInput);
+const input = new Input();
+btn.addEventListener("click", input.handelInput);
 
 selection.addEventListener("click", choiceSelected);
