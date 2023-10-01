@@ -118,47 +118,47 @@ class Stairs {
   //   this.run = run;
   // }
   getDimension(dimensionInput) {
-    this.height = dimensionInput;
+    this.#height = dimensionInput;
   }
   stairOl = document.querySelector(".step-hypot");
 
-  height = 0;
-  steps = 0;
-  rise = 0;
-  run = 10.5;
-  stepHypot = 0;
-  headroom = 93;
-  floor = 10;
-  treads = 11.5;
-  treadThickness = 1;
-  opening = 0;
-  angle = 0;
+  #height = 0;
+  #steps = 0;
+  #rise = 0;
+  #run = 10.5;
+  #stepHypot = 0;
+  #headroom = 93;
+  #floor = 10; //these are for future use
+  #treads = 11.5;
+  #treadThickness = 1;
+  #opening = 0;
+  #angle = 0;
 
   stairMath() {
-    this.steps = Math.ceil(this.height / 7.75);
-    this.rise = this.height / this.steps;
-    this.stepHypot = Math.sqrt(this.run ** 2 + this.rise ** 2);
-    this.angle = +((Math.atan2(this.rise, this.run) * 180) / Math.PI).toFixed(3);
-    this.opening = this.headroom / Math.tan(Math.atan2(this.rise, this.run));
+    this.#steps = Math.ceil(this.#height / 7.75);
+    this.#rise = this.#height / this.#steps;
+    this.#stepHypot = Math.sqrt(this.#run ** 2 + this.#rise ** 2);
+    this.#angle = +((Math.atan2(this.#rise, this.#run) * 180) / Math.PI).toFixed(3);
+    this.#opening = this.#headroom / Math.tan(Math.atan2(this.#rise, this.#run));
 
-    console.log(this.stepHypot); //TODO testing
-    console.log(this.rise);
-    console.log(this.angle);
+    console.log(this.#stepHypot); //TODO testing
+    console.log(this.#rise);
+    console.log(this.#angle);
     this.renderStairHypot();
   }
   renderStairHypot() {
-    document.querySelector(".stair-answer").textContent = `Your rise is ${this.rise.toFixed(
+    document.querySelector(".stair-answer").textContent = `Your rise is ${this.#rise.toFixed(
       3
-    )}, angle ${this.angle.toFixed(3)}, step hypot ${this.stepHypot.toFixed(
+    )}, angle ${this.#angle.toFixed(3)}, step hypot ${this.#stepHypot.toFixed(
       3
-    )} and min opening is ${this.opening} with stair length of ${this.run * this.steps}`;
+    )} and min opening is ${this.#opening} with stair length of ${this.#run * this.#steps}`;
 
-    let nextHypot = this.stepHypot;
+    let nextHypot = this.#stepHypot;
 
-    for (let i = 0; i < this.steps; i++) {
+    for (let i = 0; i < this.#steps; i++) {
       let stepHypotLI = document.createElement("li");
       stepHypotLI.textContent = nextHypot.toFixed(3);
-      nextHypot += this.stepHypot;
+      nextHypot += this.#stepHypot;
       console.log(stepHypotLI.textContent);
       this.stairOl.append(stepHypotLI);
     }
