@@ -27,19 +27,27 @@ function showHandrail() {
 
 class Input {
   constructor() {
-    this.handelInput = this.handelInput.bind(this);
+    this.handelDimensionInput = this.handelDimensionInput.bind(this);
+  }
+  emptyInputErrorCheck(elementInput) {
+    if (elementInput.value === "") {
+      elementInput.classList.add("invalid-input"); //TODO maybe toggle it
+    } else if (elementInput.classList.contains("invalid-input")) {
+      elementInput.classList.remove("invalid-input"); //TODO seems there should be a better way to handle this
+    }
   }
   //FIXME I think this should be called handelDimensionInput()
   //FIXME this needs a generic value input to be able to be versatile.
   //I need a way to check any input from any input field
-  handelInput() {
-    const checkDimension = lengthInput.value;
-
-    if (checkDimension === "") {
-      lengthInput.classList.add("invalid-input");
-    } else {
-      lengthInput.classList.remove("invalid-input"); //TODO seems there should be a better way to handle this
-    }
+  handelDimensionInput(elementInput) {
+    const checkDimension = elementInput.value;
+    this.emptyInputErrorCheck(elementInput);
+    // if (checkDimension === "") {
+    //   elementInput.classList.add("invalid-input"); //TODO maybe toggle it
+    // } else {
+    //   elementInput.classList.remove("invalid-input"); //TODO seems there should be a better way to handle this
+    // }
+    //This is if using foot (') and/or (") for entering dimension
     if (isNaN(checkDimension)) {
       const usableDimension = this.breakingInputDown(checkDimension);
       if (isNaN(usableDimension)) {
@@ -242,6 +250,8 @@ const input = new Input();
 const stair = new Stairs();
 const handrail = new Handrail();
 
-btn.addEventListener("click", input.handelInput);
+btn.addEventListener("click", () => {
+  input.handelDimensionInput(lengthInput);
+});
 
 selection.addEventListener("click", input.choiceSelected);
