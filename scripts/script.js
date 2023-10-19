@@ -31,32 +31,50 @@ class Input {
   }
   emptyInputErrorCheck(elementInput) {
     if (elementInput.value === "") {
-      elementInput.classList.add("invalid-input"); //TODO maybe toggle it
+      elementInput.classList.add("invalid-input");
     } else if (elementInput.classList.contains("invalid-input")) {
-      elementInput.classList.remove("invalid-input"); //TODO seems there should be a better way to handle this
+      elementInput.classList.remove("invalid-input");
     }
   }
-  //FIXME I think this should be called handelDimensionInput()
-  //FIXME this needs a generic value input to be able to be versatile.
-  //I need a way to check any input from any input field
+  setError(elementInput) {
+    elementInput.classList.add("invalid-input");
+  }
+  clearError(elementInput) {
+    elementInput.classList.remove("invalid-input");
+  }
+  improperCharCheck(dimension) {
+    console.log(typeof dimension);
+    dimension = dimension.replace(/(')|(\")|(\/)/g, "");
+    return isNaN(dimension);
+  }
   handelDimensionInput(elementInput) {
     const checkDimension = elementInput.value;
     this.emptyInputErrorCheck(elementInput);
-    // if (checkDimension === "") {
-    //   elementInput.classList.add("invalid-input"); //TODO maybe toggle it
-    // } else {
-    //   elementInput.classList.remove("invalid-input"); //TODO seems there should be a better way to handle this
-    // }
+    // let usableDimension;
     //This is if using foot (') and/or (") for entering dimension
     if (isNaN(checkDimension)) {
-      const usableDimension = this.breakingInputDown(checkDimension);
-      if (isNaN(usableDimension)) {
-        document.querySelector(".invalid").classList.remove("hidden");
+      if (this.improperCharCheck(checkDimension)) {
+        // usableDimension = this.breakingInputDown(checkDimension);
+        //}
+        // if (isNaN(usableDimension)) {
+        // if (isNaN(usableDimension))
+        //{
+        console.log("there is invalid input here");
+        return -1;
+        // document.querySelector(".invalid").classList.remove("hidden"); //BUG this doesn't exist
       } else {
-        this.compareInputChoice(+usableDimension);
+        const usableDimension = this.breakingInputDown(checkDimension);
+        // this.compareInputChoice(+usableDimension);
+        if (isNaN(usableDimension)) {
+          console.log("There seems to be an error");
+          return -1;
+        } else {
+          return +usableDimension;
+        }
       }
     } else {
-      this.compareInputChoice(+checkDimension);
+      return +checkDimension;
+      // this.compareInputChoice(+checkDimension);
     }
   }
   //FIXME this now is checking to many choices. I need to it to just check which section to go to
@@ -195,11 +213,20 @@ class Stairs {
   }
   renderStairHypot() {
     //TODO this I think should be a render class
-    document.querySelector(".stair-answer").textContent = `Your rise is ${this.#rise.toFixed(
-      3
-    )}, angle ${this.#angle.toFixed(3)}, step hypot ${this.#stepHypot.toFixed(
-      3
-    )} and min opening is ${this.#opening} with stair length of ${this.#run * this.#steps}`;
+    // document.querySelector(".stair-answer").innerHTML = `Your rise is ${this.#rise.toFixed(
+    //   3
+    // )}<br>Steps ${this.#steps}<br>Angle ${this.#angle.toFixed(
+    //   3
+    // )}<br>Step hypot ${this.#stepHypot.toFixed(3)} <br>Min opening is ${this.#opening.toFixed(
+    //   3
+    // )}<br>Stair length is ${this.#run * this.#steps}`;
+    document.querySelector(".stair-answer").innerHTML = `<ul>
+    <li>Your rise is ${this.#rise.toFixed(3)}</li>
+        <li>Steps ${this.#steps}</li>
+        <li>Angle ${this.#angle.toFixed(3)}</li>
+        <li>Step hypot ${this.#stepHypot.toFixed(3)}</li>
+        <li>Min opening is ${this.#opening.toFixed(3)}</li>
+        <li> Stair length is ${this.#run * this.#steps}</li></ul>`;
 
     let nextHypot = this.#stepHypot;
 
@@ -251,7 +278,17 @@ const stair = new Stairs();
 const handrail = new Handrail();
 
 btn.addEventListener("click", () => {
-  input.handelDimensionInput(lengthInput);
+  let check = 0;
+  check = input.handelDimensionInput(lengthInput);
+  if (check === -1) {
+    console.log("Do invalid stuff here");
+    input.setError(lengthInput);
+  } else {
+    if (lengthInput.classList.contains("invalid-input")) {
+      lengthInput.classList.remove("invalid-input");
+    }
+    input.compareInputChoice(input.handelDimensionInput(lengthInput)); //BUG need error check to not return
+  }
 });
 
 selection.addEventListener("click", input.choiceSelected);
