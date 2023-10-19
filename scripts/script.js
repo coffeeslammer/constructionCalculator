@@ -210,6 +210,11 @@ class Stairs {
       this.stairRun = 10.5; //FIXME for now I need this because if you check the box then uncheck it nothing happens
       //may need a reset option or something
     }
+    if (document.getElementById("chbx-max-rise-override").checked) {
+      this.riser = +document.getElementById("stair-max-rise-override-input").value;
+    } else {
+      this.riser = 7.75;
+    }
   }
   renderStairHypot() {
     //TODO this I think should be a render class
