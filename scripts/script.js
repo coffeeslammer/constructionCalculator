@@ -171,5 +171,5 @@ btn.addEventListener("click", () => {
   }
 });
 
-selection.addEventListener("touchstart click", input.choiceSelected);
+selection.addEventListener("tap", input.choiceSelected);
 selection.addEventListener("click", input.choiceSelected);
