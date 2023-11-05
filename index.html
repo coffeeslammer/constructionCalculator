@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./images/5032.png_1200.png" type="image/x-icon">
     <link rel="stylesheet" href="styles/style.css">
+    <!-- <script src="scripts/input.js" defer></script> -->
+    <script src="scripts/script.js" defer type="module"></script>
     <title>Construction Calculator</title>
 </head>
 
@@ -56,11 +58,30 @@
                 <p class="picket-spacing-answer"></p>
                 <ol class="pickets-list"></ol>
             </section>
+            <section class="deck-estimate">
+                <fieldset>
+                    <legend>Options</legend>
+                    <input type="checkbox" id="chbx-layout" name="deck-layout">
+                    <label for="chbx-layout">If layout is not 16 on center</label>
+                    <input type="text" id="deck-layout-input" name="deck-input" placeholder="16"><br>
+                    <input type="checkbox" id="chbx-need-handrail" name="need-handrail">
+                    <label for="chbx-need-handrail">Do you need a handrail</label>
+                    <!-- <input type="text" id="stair-max-rise-override-input" name="stair-input" placeholder="7.75"><br> -->
+                    <!-- <input type="checkbox" id="chbx-landing" name="stair-input">
+                    <label for="chbx-landing">If landing how many steps to it</label>
+                    <input type="text" id="stair-landing-input" name="stair-input"><br>
+                    <input type="checkbox" id="chbx-opening" name="stair-input">
+                    <label for="chbx-opening">If headroom is an issue</label>
+                    <input type="text" id="stair-opening-input" name="stair-input"> -->
+                </fieldset>
+            </section>
             <button class="calculate-btn">Enter</button>
             <!-- I need a better place to put this -->
         </section>
     </main>
-    <script src="scripts/script.js"></script>
+    <!-- <script src="scripts/script.js"></script> -->
+    <!-- <script src="scripts/input.js"></script> -->
+    <!-- <script src="scripts/stairs.js"></script> -->
 </body>
 
 </html>
