@@ -38,16 +38,27 @@ export class Stairs {
   }
   //FIXME this is very vague for a method name. Doesn't say much of what it is doing.
   stairMath() {
-    this.#steps = Math.ceil(this.#height / this.#maxRiseHeight);
-    this.#rise = this.#height / this.#steps;
-    this.#stepHypot = Math.sqrt(this.#run ** 2 + this.#rise ** 2);
-    this.#angle = +((Math.atan2(this.#rise, this.#run) * 180) / Math.PI).toFixed(3);
-    this.#opening = this.#headroom / Math.tan(Math.atan2(this.#rise, this.#run));
-
-    console.log(this.#stepHypot); //TODO testing
-    console.log(this.#rise);
-    console.log(this.#angle);
+    this.calculateSteps();
+    this.calculateRise();
+    this.calculateStepHypot();
+    this.calculateAngle();
+    this.calculateStairOpening();
     this.renderStairHypot();
+  }
+  calculateStairOpening() {
+    this.#opening = this.#headroom / Math.tan(Math.atan2(this.#rise, this.#run));
+  }
+  calculateSteps() {
+    this.#steps = Math.ceil(this.#height / this.#maxRiseHeight);
+  }
+  calculateRise() {
+    this.#rise = this.#height / this.#steps;
+  }
+  calculateStepHypot() {
+    this.#stepHypot = Math.sqrt(this.#run ** 2 + this.#rise ** 2);
+  }
+  calculateAngle() {
+    this.#angle = +((Math.atan2(this.#rise, this.#run) * 180) / Math.PI).toFixed(3);
   }
   checkOptions() {
     if (document.querySelector("#chbx-run").checked) {
