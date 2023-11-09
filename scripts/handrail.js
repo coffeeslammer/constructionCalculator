@@ -15,9 +15,15 @@ export class Handrail {
   picketList = document.querySelector(".pickets-list");
 
   calculatePickets() {
-    this.#pickets = Math.ceil((this.#length - this.#picketThickness) / this.picketMaxSpace);
-    this.#picketSpacing = (this.#length - this.#picketThickness) / this.#pickets;
+    this.calculateNumberPickets();
+    this.calculatePicketSpacing();
     this.renderPickets();
+  }
+  calculatePicketSpacing() {
+    this.#picketSpacing = (this.#length - this.#picketThickness) / this.#pickets;
+  }
+  calculateNumberPickets() {
+    this.#pickets = Math.ceil((this.#length - this.#picketThickness) / this.picketMaxSpace);
   }
   renderPickets() {
     console.log(this.#pickets);
