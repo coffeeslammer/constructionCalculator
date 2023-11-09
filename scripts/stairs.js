@@ -1,7 +1,4 @@
 export class Stairs {
-  // getDimension(dimensionInput) {
-  //   this.#height = dimensionInput;
-  // }
   stairOl = document.querySelector(".step-hypot");
 
   #maxRiseHeight = 7.75;
@@ -36,7 +33,7 @@ export class Stairs {
   set treadThickness(tread) {
     this.#treads = tread;
   }
-  //FIXME this is very vague for a method name. Doesn't say much of what it is doing.
+
   stairMath() {
     this.calculateSteps();
     this.calculateRise();
@@ -77,21 +74,17 @@ export class Stairs {
     }
   }
   renderStairHypot() {
-    //TODO this I think should be a render class
-    // document.querySelector(".stair-answer").innerHTML = `Your rise is ${this.#rise.toFixed(
-    //   3
-    // )}<br>Steps ${this.#steps}<br>Angle ${this.#angle.toFixed(
-    //   3
-    // )}<br>Step hypot ${this.#stepHypot.toFixed(3)} <br>Min opening is ${this.#opening.toFixed(
-    //   3
-    // )}<br>Stair length is ${this.#run * this.#steps}`;
     document.querySelector(".stair-answer").innerHTML = `<ul>
-    <li>Your rise is ${this.#rise.toFixed(3)}</li>
-        <li>Steps ${this.#steps}</li>
-        <li>Angle ${this.#angle.toFixed(3)}</li>
-        <li>Step hypot ${this.#stepHypot.toFixed(3)}</li>
-        <li>Min opening is ${this.#opening.toFixed(3)}</li>
-        <li> Stair length is ${this.#run * this.#steps}</li></ul>`;
+    <li>Your rise is: ${this.#rise.toFixed(3)}</li>
+        <li>Steps: ${this.#steps}</li>
+        <li>Angle: ${this.#angle.toFixed(3)}</li>
+        <li>Step hypot: ${this.#stepHypot.toFixed(3)}</li>
+        <li>Min opening is: ${this.#opening.toFixed(3)}</li>
+        <li> Stair length is: ${this.#run * this.#steps}</li></ul>`;
+
+    if (this.stairOl.innerHTML !== "") {
+      this.stairOl.innerHTML = "";
+    }
 
     let nextHypot = this.#stepHypot;
 
