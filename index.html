@@ -7,29 +7,42 @@
     <link rel="shortcut icon" href="./images/5032.png_1200.png" type="image/x-icon">
     <link rel="stylesheet" href="styles/style.css">
     <!-- <script src="scripts/input.js" defer></script> -->
-    <script src="scripts/script.js" defer type="module"></script>
+    <!-- <script src="scripts/script.js" defer type="module"></script> -->
     <title>Construction Calculator</title>
 </head>
 
 <body>
     <header>
-        <label for="calculation-select">Choose Your Calculation:</label>
+        <a href="index.html">Home</a>
+        <a href="stairs.html">Stairs</a>
+        <a href="handrail.html">Handrails</a>
+        <a href="roof.html">Roof</a>
+
+        <!-- <label for="calculation-select">Choose Your Calculation:</label>
         <select name="choices" id="calculation-select">
             <option value="">--Please choose an option--</option>
             <option value="stairs">Stairs</option>
             <option value="roof">Roof</option>
             <option value="handrails">Handrails</option>
-        </select>
+        </select> -->
     </header>
     <main>
-        <h1 class="test">Welcome to my <br> Construction Calculator Project <br>Please select an option from above</h1>
+        <h1 class="test">Welcome to my <br> Construction Calculator Project</h1>
+        <p>You may choose a section to go to depending on what you need</p>
+
+        <ul>
+            <li><a href="stairs.html">Stairs</a></li>
+            <li><a href="handrail.html">Handrails</a></li>
+            <li><a href="roof.html">Roof</a></li>
+            <!-- <li></li> -->
+        </ul>
         <section class="display-ouput-section">
-            <fieldset>
+            <!-- <fieldset>
                 <legend>Enter Overall Height</legend>
                 <input class="dimension-input" type="text" id="stair-height-input" name="stair-input"
                     placeholder="height">
-            </fieldset>
-            <section class="stairs-section no-show">
+            </fieldset> -->
+            <!-- <section class="stairs-section no-show">
                 <h2>You are in the stair section</h2>
                 <form>
 
@@ -50,14 +63,14 @@
                     </fieldset>
                 </form>
                 <p class="stair-answer"></p>
-                <ol class="step-hypot"></ol>
-            </section>
+                <ol class="step-hypot"></ol> -->
+            <!-- </section> -->
             <section class="roof-section no-show"></section>
-            <section class="handrail-section no-show">
+            <!-- <section class="handrail-section no-show">
                 <h2>You are in the handrail section</h2>
                 <p class="picket-spacing-answer"></p>
                 <ol class="pickets-list"></ol>
-            </section>
+            </section> -->
             <section class="deck-estimate no-show">
                 <fieldset>
                     <legend>Options</legend>
@@ -75,7 +88,7 @@
                     <input type="text" id="stair-opening-input" name="stair-input"> -->
                 </fieldset>
             </section>
-            <button class="calculate-btn">Enter</button>
+            <!-- <button class="calculate-btn">Enter</button> -->
             <!-- I need a better place to put this -->
         </section>
     </main>
