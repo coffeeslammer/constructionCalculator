@@ -4,9 +4,18 @@
 
 body,
 h1,
+h2,
 p {
     margin: 0;
     padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    padding: .25rem 1rem;
+    background: linear-gradient(rgb(221, 220, 220), rgb(96, 96, 96));
+    border-radius: 8px;
 }
 
 body {
@@ -77,4 +86,47 @@ li {
     font-weight: 700;
     background-color: rgb(52, 52, 52);
     border-radius: 8px;
+}
+
+.option-container {
+    border: 2px solid white;
+    margin: 1rem;
+    padding: 1rem;
+}
+
+.form-container {
+    height: 0;
+    overflow: hidden;
+}
+
+.option-container.active .form-container {
+    height: 100%;
+    margin-top: 1rem;
+}
+
+.option-container {
+    position: relative;
+}
+
+.option-container-header {
+    position: relative;
+}
+
+.option-container .option-container-header::before {
+    content: "+";
+    font-size: 2rem;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+.option-container.active .option-container-header::before {
+    content: "-";
+    font-size: 2rem;
+}
+
+
+@media screen and(min-width:600px) {
+    /* put links into dropdown */
 }
