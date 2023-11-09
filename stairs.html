@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./images/5032.png_1200.png" type="image/x-icon">
+    <link rel="stylesheet" href="./styles/style.css">
+    <script src="scripts/script.js" defer type="module"></script>
+    <title>Stairs</title>
+</head>
+
+<body>
+    <header>
+        <a href="index.html">Home</a>
+        <a href="stairs.html">Stairs</a>
+        <a href="handrail.html">Handrails</a>
+        <a href="roof.html">Roof</a>
+    </header>
+    <section class="stairs-section">
+        <h2>You are in the stair section</h2>
+        <fieldset>
+            <legend>Enter Overall Height</legend>
+            <input class="dimension-input" type="text" id="stair-height-input" name="stair-input" placeholder="height">
+        </fieldset>
+        <!-- <label for="calculation-select">Choose Your Calculation:</label>
+                <select name="choices" id="calculation-select">
+                    <option value="">--Please choose an option--</option>
+                    <option value="stairs">Stairs</option><label for="chbx-run">If run is not 10.5</label>
+                    <input type="text" id="stair-run-input" name="stair-input" placeholder="10.5"><br>
+                    <option value="roof">Roof</option>
+                    <option value="handrails">Handrails</option>
+                </select> -->
+        <section class="option-container">
+            <div class="option-container-header">
+                <h2>Options</h2>
+            </div>
+            <div class="form-container">
+                <form>
+                    <!-- <fieldset> -->
+                    <!-- <legend>Options</legend> -->
+                    <input type="checkbox" id="chbx-run" name="stair-input">
+                    <label for="chbx-run">If run is not 10.5</label>
+                    <input type="text" id="stair-run-input" name="stair-input" placeholder="10.5"><br>
+                    <input type="checkbox" id="chbx-max-rise-override" name="stair-input">
+                    <label for="chbx-rise-override">If need rise over 7.75</label>
+                    <input type="text" id="stair-max-rise-override-input" name="stair-input" placeholder="7.75"><br>
+                    <input type="checkbox" id="chbx-landing" name="stair-input">
+                    <label for="chbx-landing">If landing how many steps to it</label>
+                    <input type="text" id="stair-landing-input" name="stair-input"><br>
+                    <input type="checkbox" id="chbx-opening" name="stair-input">
+                    <label for="chbx-opening">If headroom is an issue</label>
+                    <input type="text" id="stair-opening-input" name="stair-input">
+                    <!-- </fieldset> -->
+                </form>
+            </div>
+
+        </section>
+        <button class="calculate-btn">Enter</button>
+        <p class="stair-answer"></p>
+        <ol class="step-hypot"></ol>
+    </section>
+</body>
+
+</html>
